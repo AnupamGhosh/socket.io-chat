@@ -1,0 +1,19 @@
+#chat-box {
+	margin-top: 10px;
+}
+
+li.primary {
+	border-color: plum;
+}
+
+li.secondary {
+	border-color: burlywood;
+}
+
+#chat > div > .card {
+	border: none;
+}
+
+#users > li {
+	cursor: pointer;
+}
