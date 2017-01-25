@@ -41,7 +41,12 @@ $(function() {
 	socket.on('chatMessageClient', function(data) {
 		var room = data.room;
 		rooms[room].push(data);
+		if ($('#'+data.room).length) { // if msg is sent from curRoom
 		renderSingleMsg(data);
+		} else {
+			if (data.room == publicRoom.room) data.id = publicRoom.id;
+			$('#'+data.id + ' .fa-envelope').removeClass('invisible');
+		}
 	});
 
 	socket.on('users online', function(users) {
@@ -54,9 +59,16 @@ $(function() {
 			var userID = this.id;
 			if (user && user.id == userID) return true;
 			$('#users').append(
-				$('<li id="'+userID+'" class="list-group-item">' + this.name + '</li>')
+				$('<li id="'+userID+'" class="list-group-item">\
+					<label class="form-check-inline invisible">\
+						<input class="form-check-input" type="checkbox" value="'+userID+'">\
+					</label>'
+				 	+ this.name +
+					'<i class="fa fa-envelope pull-right invisible"></i>\
+				 </li>')
 				.click(function() {
 					if (user) {
+						$(this).find('.fa-envelope').addClass('invisible');
 						user.userToUser(userID);
 					}
 				})
@@ -72,6 +84,7 @@ $(function() {
 	socket.on('userToUserClient', function(data) {
 		rooms[data.room] = [];
 		user.buddy[data.userID] = data.room;
+		$('#'+data.userID + ' .fa-envelope').removeClass('invisible');
 	});
 
 	$('#name').submit(function(event) { // submits user name

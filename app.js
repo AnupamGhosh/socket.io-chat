@@ -1,14 +1,3 @@
-//var fs = require('fs');
-//
-//var options = {
-//	key : fs.readFileSync('/var/www/vhosts/test.cozeva.com/ssl/test.cozeva.com.key'),
-//	cert : fs.readFileSync('/var/www/vhosts/test.cozeva.com/ssl/test.cozeva.com.crt'),
-//	ca : fs.readFileSync('/var/www/vhosts/test.cozeva.com/ssl/DigiCertCA.crt')
-//};
-//
-//var express = require('express');
-//var app = express();
-//var http = require('https').createServer(options, app);
 'use strict'
 
 class User {
@@ -105,10 +94,8 @@ io.on('connection', function(socket) {
 
 		for (var user of users) {
 			user.socket.join(hash);
-			// io.to(hash).emit('newUserJoined', {id: user.id, room: hash});
 			user.rooms.push(hash);
 		}
-		return hash;
-		// io.to(hash).emit('newUserJoined', {id: users[0].id, room: hash});
+		return hash;		
 	}
 });

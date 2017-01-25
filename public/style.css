@@ -17,3 +17,11 @@ li.secondary {
 #users > li {
 	cursor: pointer;
 }
+#users .fa-envelope {
+	margin-top: 4px;
+}
+
+#recipient + i {
+	margin-left: 5px;
+	cursor: pointer;
+}
