@@ -21,7 +21,7 @@ li.secondary {
 	margin-top: 4px;
 }
 
-#recipient + i {
+#add-users, #create-room {
 	margin-left: 5px;
 	cursor: pointer;
 }
